@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html ng-app="userApp">
+<head>
+  <title>User Management</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+
+<body ng-controller="UserCtrl">
+
+<h3>User Management Application</h3>
+
+<!-- Form -->
+<form ng-submit="save()">
+  <input type="text" ng-model="user.name" placeholder="Name" required>
+  <input type="email" ng-model="user.email" placeholder="Email" required>
+  <input type="number" ng-model="user.age" placeholder="Age" required>
+  <button type="submit">{{edit ? 'Update' : 'Add'}}</button>
+</form>
+
+<!-- Table -->
+<table border="1">
+  <tr>
+    <th>ID</th><th>Name</th><th>Email</th><th>Age</th><th>Action</th>
+  </tr>
+  <tr ng-repeat="u in users">
+    <td>{{u.id}}</td>
+    <td>{{u.name}}</td>
+    <td>{{u.email}}</td>
+    <td>{{u.age}}</td>
+    <td>
+      <button ng-click="editUser(u)">Edit</button>
+      <button ng-click="deleteUser(u.id)">Delete</button>
+    </td>
+  </tr>
+</table>
+
+<script>
+var app = angular.module("userApp", []);
+
+app.controller("UserCtrl", function($scope) {
+  $scope.users = [];
+  $scope.user = {};
+  $scope.edit = false;
+  var id = 1;
+
+  $scope.save = function() {
+    if ($scope.edit) {
+      for (let i = 0; i < $scope.users.length; i++)
+        if ($scope.users[i].id == $scope.user.id)
+          $scope.users[i] = angular.copy($scope.user);
+      $scope.edit = false;
+    } else {
+      $scope.user.id = id++;
+      $scope.users.push(angular.copy($scope.user));
+    }
+    $scope.user = {};
+  };
+
+  $scope.editUser = function(u) {
+    $scope.user = angular.copy(u);
+    $scope.edit = true;
+  };
+
+  $scope.deleteUser = function(id) {
+    $scope.users = $scope.users.filter(u => u.id != id);
+  };
+});
+</script>
+
+</body>
+</html>

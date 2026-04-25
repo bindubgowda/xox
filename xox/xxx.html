@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h3>XML to HTML</h3>
+
+<div id="output"></div>
+
+<script>
+  // Single XML string
+  var xml = `<student>
+    <name>Karthik</name>
+    <marks>85</marks>
+    </student>`;
+
+  // Parse XML
+  var parser = new DOMParser();
+  var xmlDoc = parser.parseFromString(xml, "text/xml");
+
+  // Convert XML to HTML
+  var name = xmlDoc.getElementsByTagName("name")[0].textContent;
+  var marks = xmlDoc.getElementsByTagName("marks")[0].textContent;
+
+  document.getElementById("output").innerHTML =
+    "Name: " + name + "<br>" +
+    "Marks: " + marks;
+</script>
+
+</body>
+</html>

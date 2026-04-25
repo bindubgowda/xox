@@ -1,0 +1,105 @@
+* {
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    margin: 0;
+    background: white;
+    color: red;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.game-container {
+    text-align: center;
+    width: 100%;
+    max-width: 350px;
+}
+
+.board {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin: 20px 0;
+}
+
+.cell {
+    background: black;
+    border-radius: 10px;
+    font-size: 2.5rem;
+    height: 90px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.cell:hover {
+    background: blue;
+}
+
+.status {
+    margin: 10px 0;
+    font-size: 1.1rem;
+}
+
+.restart-btn {
+    margin-top: 10px;
+    padding: 10px 20px;
+    border: none;
+    background: #4caf50;
+    color: white;
+    font-size: 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+}
+.restart-btn:hover{
+  background:red;
+}
+
+/* Popup */
+.popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.6);
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+.popup-content {
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.popup-content button {
+    margin-top: 15px;
+    padding: 8px 20px;
+    border: none;
+    background: #2196f3;
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+}
+.popup-content button:hover{
+  background:green;
+}
+
+/* Mobile Responsive */
+@media (max-width: 480px) {
+    .cell {
+        height: 70px;
+        font-size: 2rem;
+    }
+}
+
+
+
